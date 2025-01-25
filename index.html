@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Program Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: #1f1f1f;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+        }
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #00bcd4;
+        }
+        .container button {
+            background: #00bcd4;
+            color: #ffffff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .container button:hover {
+            background: #008c9e;
+        }
+        .form-container {
+            display: none;
+            background: #1f1f1f;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #bbbbbb;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #333333;
+            border-radius: 5px;
+            background: #2c2c2c;
+            color: #ffffff;
+        }
+        .form-group button {
+            background: #00bcd4;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .form-group button:hover {
+            background: #008c9e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>বর্তমান কথা মিউজিক স্টুডিও</h1>
+        <button onclick="showForm()">এক ক্লিকে রেজিস্টার করুন</button>
+
+        <div class="form-container" id="formContainer">
+            <form id="registrationForm" onsubmit="sendEmail(event)">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="cus_name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="cus_email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" name="cus_phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="fee">Registration Fee</label>
+                    <select id="fee" name="total_amount" required>
+                        <option value="">Select Amount</option>
+                        <option value="500">500 BDT</option>
+                        <option value="1000">1000 BDT</option>
+                        <option value="1500">1500 BDT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showForm() {
+            document.getElementById('formContainer').style.display = 'block';
+        }
+
+        function sendEmail(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const fee = document.getElementById('fee').value;
+
+            const adminEmail = "sahibulislam2024@gmail.com"; // Replace with actual admin email
+
+            const emailBody = `
+                New Registration Details:\n\n
+                Name: ${name}\n
+                Email: ${email}\n
+                Phone: ${phone}\n
+                Registration Fee: ${fee} BDT
+            `;
+
+            const mailtoLink = `mailto:${adminEmail}?subject=New Registration&body=${encodeURIComponent(emailBody)}`;
+
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>
